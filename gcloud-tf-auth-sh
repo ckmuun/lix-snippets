@@ -1,0 +1,4 @@
+# snippet for setting up gcloud auth with terraform	
+gcloud auth application-default login
+
+# kudos to https://myshittycode.com/2020/01/23/kitchen-terraform-local-development-workflow/
