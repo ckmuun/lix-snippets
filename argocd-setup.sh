@@ -23,8 +23,6 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 
 
 # password retrieval for argocd <= 1.8.x
-
-
 # login to argocd server at minikube ip with default port 31617 for https:// 
 argocd login $(minikube ip):31617  --username admin --password $(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
 
