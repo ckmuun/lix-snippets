@@ -5,6 +5,6 @@ for file in /source/directory/*
 do
     if [[ -f $file ]]; then
         echo "processing $file"
-        #copy stuff ....
+        # do somehting with that file here ...
     fi
 done
