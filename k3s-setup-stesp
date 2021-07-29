@@ -1,0 +1,29 @@
+# steps to setup k3s on raspi 4b with Fedora 34 server ARM64
+# LOW SECURITY DUE TO WORKAROUND BELOW
+
+# execute on master
+# get k3s
+curl -sfL https://get.k3s.io | sh -
+
+# set hostname, technically not required but makes life easier
+sudo hostname-cmd set-hostname raspi-k3s-master
+
+# open firewall port 6443
+sudo firewall-cmd --zone=public --permanent --add-port=6443/tcp
+sudo firewall-cmd reload
+sudo systemctl restart firewalld
+
+# make k3s config accessible (shitty workaround)
+sudo chmod 777 /etc/rancher/k3s/k3s.yaml
+
+# get token
+sudo cat /var/lib/rancher/k3s/server/node-token
+
+
+# execute on worker nodes
+sudo curl -sfL http://get.k3s.io | K3S_URL=https://raspi-k3s-master:6443 K3S_TOKEN=<token cat'ted above> sh -
+
+# execute on master
+
+# verify workers were correctly joined
+kubectl get nodes 
