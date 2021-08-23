@@ -1,0 +1,9 @@
+
+# credit: https://github.com/slmingol at https://github.com/argoproj/argo-cd/pull/3554
+helm repo add argo https://argoproj.github.io/argo-helm
+     helm install my-argocd argo/argo-cd \
+         --namespace argocd \
+         --create-namespace \
+         --set global.image.repository="alinbalutoiu/argocd" \
+         --set installCRDs="false" \
+         --wait
